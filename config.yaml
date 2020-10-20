@@ -1,0 +1,53 @@
+
+# ######################### #
+# Shared configuration file #
+# ######################### #
+
+########
+# MCTS #
+########
+
+mcts:
+  iterations: 300              # The number of iterations to be performed. The faster the CPU, the higher it should be.
+  maximum rollout depth: 5     # The maximum depth when performing roll-outs in case no terminal state is found. Recommended: number of rows/columns (if square).
+  Cp: 1.41                     # The upper confidence bound exploration parameter Cp.
+  discount factor: 0.95        # Discount Factor for simulate()
+
+###############
+# Exploration #
+###############
+
+exploration policy: epsilon-greedy
+initial collect steps: 0
+start exploration rate: 0.5
+end exploration rate: 0.005
+final exploration timestep: 5000
+
+##########
+# Models #
+##########
+
+# Global parameters shared between models
+
+learning rate: 0.001
+replay min batch: 32
+replay memory size: 15000
+
+# Model-specific parameters
+
+teammates model:
+  layers:
+    - 48, relu
+    - 48, relu
+
+dqn:
+  layers:
+    - 64, relu
+    - 64, relu
+  discount factor: 0.95
+
+###########
+# PLASTIC #
+###########
+
+eta: 0.25   # Maximum loss for PLASTIC Belief Updates. Kept as in original work
